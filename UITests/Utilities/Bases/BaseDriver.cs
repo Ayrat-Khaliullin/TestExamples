@@ -105,29 +105,12 @@ namespace UITests.Utilities.Bases
                 options = new ChromeOptions();
                 options.AddArgument("--no-sandbox");
                 options.AddAdditionalCapability("version", "80.0", true);
-
-            try
-            {
-                //create download directory
-                if (!Directory.Exists(DownloadPath)) Directory.CreateDirectory(DownloadPath);
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-
             options.AddUserProfilePreference("download.default_directory", "/home/selenium/Downloads");
-            
             options.AddArgument("start-maximized");
-            options.AddArgument("no-sandbox");
-
+            options.AddArgument("ignore-certificate-errors");
             options.AddAdditionalCapability("platform", "Any", true);
             options.AddAdditionalCapability("enableVNC", true, true);
-           
-
             options.AddAdditionalCapability("name", TestContext.CurrentContext.Test.Name+" | Started at "+DateTime.Now.ToString("HH:mm:ss"), true);
-            //TestContext.CurrentContext.Test.Name
-            //*****************
             
             var driver = new RemoteWebDriver(new Uri(RemoteWdUri + "wd/hub"), options.ToCapabilities(), TimeSpan.FromMinutes(9));
             
