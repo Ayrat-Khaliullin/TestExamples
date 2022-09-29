@@ -1,0 +1,31 @@
+version: '3.7'
+networks:
+  selenoid_network:
+    external:
+      name: selenoid_default
+services:
+  selenoid-chrome:
+    image: "selenoid/vnc:chrome_105.0"
+    networks:
+      selenoid_network: null
+    command: ["--container-network", "selenoid_default"]
+  selenoid:
+    networks:
+      selenoid_network: null
+    image: "aerokube/selenoid"
+    volumes:
+      - ".//:/etc/selenoid/" # assumed current dir contains browsers.json
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    ports:
+      - "4444:4444"
+    command: ["--container-network", "selenoid_default", "-limit", "8", "-timeout", "300s"]
+  selenoid-ui:
+    networks:
+      selenoid_network: null
+    image: "aerokube/selenoid-ui"
+    links:
+      - selenoid
+    ports:
+      - "8080:8080"
+    command: ["--container-network", "selenoid_default"]
+    command: ["--selenoid-uri", "http://selenoid:4444"]

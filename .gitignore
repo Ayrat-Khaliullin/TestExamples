@@ -1,0 +1,12 @@
+obj/
+results/
+attachments/
+*.log
+backups/
+/.vs
+APITests/bin/
+UITests/bin/
+UITests/resultsUI/
+Backup/
+bin/
+

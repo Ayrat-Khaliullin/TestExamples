@@ -1,0 +1,48 @@
+{
+  "yandex": {
+    "default": "19.4.2.698-1",
+    "versions": {
+      "19.4.2.698-1": {
+        "image": "sqaadmin/browserimages:ya_19.4.2.698-1",
+        "port": "4444",
+        "tmpfs": {
+          "/tmp": "size=512m"
+        }
+      }
+    }
+  },
+  "chrome": {
+    "default": "80.0",
+    "versions": {
+      "80.0": {
+        "image": "selenoid/vnc:chrome_80.0",
+        "port": "4444",
+        "path": "/",
+        "tmpfs": {
+          "/tmp": "size=512m"
+        }
+      },
+      "77.0": {
+        "image": "selenoid/vnc:chrome_77.0",
+        "port": "4444",
+        "path": "/",
+        "tmpfs": {
+          "/tmp": "size=512m"
+        }
+      }
+    }
+  },
+  "firefox": {
+    "default": "63.0",
+    "versions": {
+      "63.0": {
+        "image": "selenoid/firefox:63.0",
+        "port": "4444",
+        "path": "/wd/hub",
+        "tmpfs": {
+          "/tmp": "size=128m"
+        }
+      }
+    }
+  }
+}
